@@ -9,14 +9,15 @@ int main() {
     std::cout << "How many Fibonacci numbers to generate?";
     std::cin >> n;
     std::cout.precision(15);
-    while (n > 0) {
+    int i = 0;
+    while (i < n) {
         current = a + b;
         b = a;
         a = current;
-        std::cout << current << "\t";
-        std::cout << "ratio = " << a / static_cast<double>(b) << std::endl;
-        --n;
+        ++i;
     }
+    std::cout << n << "th Fibonacci number: " << current << std::endl;
+    std::cout << "ratio = " << a / static_cast<double>(b) << std::endl;
     std::cout << std::endl;
     return 0;
 }
