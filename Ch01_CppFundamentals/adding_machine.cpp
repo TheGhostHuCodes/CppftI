@@ -1,8 +1,8 @@
 #include <iostream>
 
 int main() {
-    int sum = 0;
-    int n = 1;
+    double sum = 0.0;
+    double n = 1.0;
     std::cout << "Enter a list of numbers, terminated with 0 or non-digit."
               << std::endl
               << "Enter:";
