@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 
 int main() {
     std::cout << std::endl;
@@ -6,8 +7,16 @@ int main() {
     int a = 0;
     int b = 1;
     int current = 0;
-    std::cout << "How many Fibonacci numbers to generate?";
-    std::cin >> n;
+    do {
+        std::cout << "How many Fibonacci numbers to generate?" << std::endl;
+        std::cout << "Enter an integer greater than 0: ";
+        std::cin >> n;
+        if (!std::cin) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+    } while (n <= 0);
     std::cout.precision(15);
     int i = 0;
     while (i < n) {
