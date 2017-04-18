@@ -3,7 +3,7 @@
 int main() {
     std::cout << std::endl;
     int n = 0;
-    int a = 1;
+    int a = 0;
     int b = 1;
     int current = 0;
     std::cout << "How many Fibonacci numbers to generate?";
