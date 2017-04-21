@@ -5,7 +5,8 @@ int main() {
     int si = 0;
     unsigned int ui = 0;
     double d = 0;
-    d = ui = si = c;
+    float f = 0;
+    d = ui = si = c = f;
     if (typeid(c + c) == typeid(int)) {
         std::cout << "type of (char + char) is int" << std::endl;
     }
@@ -14,6 +15,12 @@ int main() {
     }
     if (typeid(si + d) == typeid(double)) {
         std::cout << "type of (int + double) is double" << std::endl;
+    }
+    if (typeid(f + f) == typeid(float)) {
+        std::cout << "type of (float + float) is float" << std::endl;
+    }
+    if (typeid(f * f) == typeid(float)) {
+        std::cout << "type of (float * float) is float" << std::endl;
     }
     return 0;
 }
