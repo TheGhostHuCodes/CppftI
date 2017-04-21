@@ -6,6 +6,7 @@ int main() {
     unsigned int ui = 0;
     double d = 0;
     float f = 0;
+    unsigned char uc = 0;
     d = ui = si = c = f;
     if (typeid(c + c) == typeid(int)) {
         std::cout << "type of (char + char) is int" << std::endl;
@@ -21,6 +22,11 @@ int main() {
     }
     if (typeid(f * f) == typeid(float)) {
         std::cout << "type of (float * float) is float" << std::endl;
+    }
+    if (typeid(uc + si) == typeid(int)) {
+        std::cout << "type of (unsigned char + int) is int" << std::endl;
+    } else if (typeid(uc + si) == typeid(unsigned)) {
+        std::cout << "type of (unsigned char + int) is unsigned" << std::endl;
     }
     return 0;
 }
