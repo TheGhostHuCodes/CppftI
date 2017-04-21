@@ -8,7 +8,7 @@ int main() {
     std::cin >> test_num;
     while (n++ < sizeof(test_num) * 8) {
         std::cout << ((test_num & mask) != 0);
-        mask = mask >> 1;
+        mask >>= 1;
         if (n % 4 == 0) {
             std::cout << " ";
         }
