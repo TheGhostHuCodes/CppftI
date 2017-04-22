@@ -3,20 +3,18 @@
 
 int main() {
     std::string input_str;
-    std::cin >> input_str;
-    int expected_string_len = sizeof(short) * 8;
-
-    if (input_str.length() != expected_string_len) {
-        std::cout << "Please input binary string with length "
-                  << expected_string_len << ", got string with length "
-                  << input_str.length() << "." << std::endl;
-        return -1;
-    }
+    std::getline(std::cin, input_str);
+    int expected_processed_chars = sizeof(short) * 8;
 
     short result = 0;
-    char input_char;
-    for (int i = 0; i < expected_string_len; ++i) {
-        input_char = input_str[i];
+    int processed_chars = 0;
+    int input_len = input_str.length();
+    for (int i = 0; i < input_len; ++i) {
+        char input_char = input_str[i];
+        if (input_char == ' ') {
+            continue;
+        }
+        ++processed_chars;
         result <<= 1;
         if (input_char == '1') {
             result |= 1;
@@ -25,6 +23,12 @@ int main() {
                       << " at position: " << i + 1 << std::endl;
             return -1;
         }
+    }
+    if (processed_chars != expected_processed_chars) {
+        std::cout << "Please input binary string with length "
+                  << expected_processed_chars << ", got string with length "
+                  << processed_chars << "." << std::endl;
+        return -1;
     }
     std::cout << result << std::endl;
     return 0;
