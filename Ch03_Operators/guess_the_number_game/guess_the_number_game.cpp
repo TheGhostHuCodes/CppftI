@@ -1,3 +1,4 @@
+#include <cmath>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -22,6 +23,9 @@ int main() {
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
     } while (N <= 0);
+    std::cout << "You should be able to guess the answer in "
+              << static_cast<int>(log(N) / log(2)) + 1 << " guesses or less."
+              << std::endl;
 
     while (play_more) {
         target = 1 + rand() % N;
