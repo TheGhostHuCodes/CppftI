@@ -8,19 +8,18 @@ int main() {
 
     short result = 0;
     int processed_chars = 0;
-    int input_len = input_str.length();
-    for (int i = 0; i < input_len; ++i) {
-        char input_char = input_str[i];
-        if (input_char == ' ') {
+    for (char ch : input_str) {
+        if (ch == ' ') {
             continue;
         }
         ++processed_chars;
         result <<= 1;
-        if (input_char == '1') {
+        if (ch == '1') {
             result |= 1;
-        } else if (input_char != '0') {
-            std::cout << "could not process character: " << input_char
-                      << " at position: " << i + 1 << std::endl;
+        } else if (ch != '0') {
+            std::cout << "could not process character: " << ch
+                      << " at position: " << (&ch - &input_str[0]) + 1
+                      << std::endl;
             return -1;
         }
     }
