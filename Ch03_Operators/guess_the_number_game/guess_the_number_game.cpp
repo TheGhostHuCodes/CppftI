@@ -9,6 +9,7 @@ int main() {
     int target = 0;
     int guess = 0;
     int N = 0;
+    int attempts = 0;
 
     do {
         std::cout
@@ -30,10 +31,16 @@ int main() {
             if (guess == 0) {
                 play_more = false;
                 break;
-            } else if (guess == target) {
+            }
+
+            ++attempts;
+            if (guess == target) {
                 std::cout << "CORRECT!!! Number is " << target << "!"
                           << std::endl;
+                std::cout << "It only took you " << attempts << " guesses."
+                          << std::endl;
                 std::cout << "Let's play again!" << std::endl;
+                attempts = 0;
                 break;
             } else if (guess < target) {
                 std::cout << "Too low! Try again!" << std::endl;
