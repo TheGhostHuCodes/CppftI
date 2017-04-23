@@ -29,13 +29,17 @@ int main() {
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(),
                                 '\n');
             }
-            if (cmd == 1) {
+            switch (cmd) {
+            case 1:
                 std::cout << "Yay! I got it right!" << std::endl;
                 guess_again = false;
-            } else if (cmd == 3) {
-                upper_bound = n - 1;
-            } else {
+                break;
+            case 2:
                 lower_bound = n + 1;
+                break;
+            case 3:
+                upper_bound = n - 1;
+                break;
             }
         } while (guess_again);
 
