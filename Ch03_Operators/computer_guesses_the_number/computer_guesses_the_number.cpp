@@ -18,10 +18,17 @@ int main() {
         do {
             n = static_cast<int>((lower_bound + upper_bound) / 2.0);
             std::cout << "I guess " << n << "." << std::endl;
-            std::cout
-                << "Respond: 1=Correct! 2=Guess was too low! 3=Guess was too "
-                   "high! ENTER =>";
-            std::cin >> cmd;
+
+            std::cout << "Respond: 1=Correct! 2=Guess was too low! 3=Guess "
+                         "was too high! ENTER =>";
+            while (!(std::cin >> cmd) || (cmd != 1 && cmd != 2 && cmd != 3)) {
+                std::cout << "Bad input, try again." << std::endl;
+                std::cout << "Respond: 1=Correct! 2=Guess was too low! 3=Guess "
+                             "was too high! ENTER =>";
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(),
+                                '\n');
+            }
             if (cmd == 1) {
                 std::cout << "Yay! I got it right!" << std::endl;
                 guess_again = false;
@@ -31,11 +38,15 @@ int main() {
                 lower_bound = n + 1;
             }
         } while (guess_again);
+
         std::cout << "Play again? 1=Yes 2=No. ENTER:";
-        std::cin >> cmd;
-        if (cmd == 1) {
-            play_again = true;
+        while (!(std::cin >> cmd) || (cmd != 1 && cmd != 2)) {
+            std::cout << "Bad input, try again." << std::endl;
+            std::cout << "Play again? 1=Yes 2=No. ENTER:";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
+        play_again = (cmd == 1);
     } while (play_again);
     return 0;
 }
