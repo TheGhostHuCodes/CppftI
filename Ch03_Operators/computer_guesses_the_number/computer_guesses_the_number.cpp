@@ -47,6 +47,7 @@ int main() {
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
         play_again = (cmd == 1);
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     } while (play_again);
     return 0;
 }
