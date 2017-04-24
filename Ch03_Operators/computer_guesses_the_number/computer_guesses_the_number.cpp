@@ -16,6 +16,12 @@ int main() {
         std::cin.ignore();
         bool guess_again = true;
         do {
+            if (lower_bound > upper_bound) {
+                std::cout << "You gave inconsistent information at some point. "
+                             "How rude. I declare myself winner by default."
+                          << std::endl;
+                break;
+            }
             n = static_cast<int>((lower_bound + upper_bound) / 2.0);
             std::cout << "I guess " << n << "." << std::endl;
 
