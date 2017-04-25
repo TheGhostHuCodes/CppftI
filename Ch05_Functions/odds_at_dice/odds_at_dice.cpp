@@ -2,14 +2,17 @@
 
 double calc_roll(int n);
 double calc_roll_dont_pass(int n);
+double calc_roll_playing_the_field(int n);
 
 int dice_totals[11] = {1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1};
 // Ways of rolling:    2  3  4  5  6  7  8  9  10 11 12
 
 int main() {
     double prob_total = 0.0;
+    double playing_the_field_prob_total = 0.0;
     for (int i = 2; i <= 12; ++i) {
         prob_total += calc_roll(i);
+        playing_the_field_prob_total += calc_roll_playing_the_field(i);
     }
     double dont_pass_prob_total = 0.0;
     for (int i = 2; i <= 11; ++i) {
@@ -19,6 +22,8 @@ int main() {
     std::cout << prob_total << std::endl;
     std::cout << "Total probability of don't pass winning: ";
     std::cout << dont_pass_prob_total << std::endl;
+    std::cout << "Total probability of playing the field winning: ";
+    std::cout << playing_the_field_prob_total << std::endl;
     return 0;
 }
 
@@ -75,6 +80,29 @@ double calc_roll_dont_pass(int n) {
         // point, and 6 = number of ways to roll 7.
         double prob_miss_point = 6.0 / (d + 6.0);
         return prob_roll * prob_miss_point;
+        break;
+    }
+}
+
+// Return the probability of rolling n AND winning a play the field bet.
+double calc_roll_playing_the_field(int n) {
+    double d = dice_totals[n - 2];
+    double prob_roll = d / 36.0;
+
+    switch (n) {
+    case 2:
+    case 3:
+    case 4:
+    case 9:
+    case 10:
+    case 11:
+    case 12:
+        // Win!
+        return prob_roll;
+        break;
+    default:
+        // Loose :(
+        return 0;
         break;
     }
 }
