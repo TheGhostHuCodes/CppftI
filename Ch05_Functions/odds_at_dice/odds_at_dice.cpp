@@ -1,7 +1,6 @@
 #include <iostream>
 
 double calc_roll(int n);
-double make_point(int n);
 
 int dice_totals[11] = {1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1};
 // Ways of rolling:    2  3  4  5  6  7  8  9  10 11 12
@@ -36,15 +35,11 @@ double calc_roll(int n) {
         break;
     default:
         // Win if you make point.
-        return prob_roll * make_point(n);
+        // The probability of winning given a certain "point": This is equal to
+        // d/(d+6), where d = number of ways to roll the point, and 6 = number
+        // of ways to roll 7.
+        double prob_make_point = d / (d + 6.0);
+        return prob_roll * prob_make_point;
         break;
     }
-}
-
-// Returns the probability of winning given a certain "point": This is equal
-// to d/(d+6), where d = number of ways to roll the point, and 6 = number of
-// ways to roll 7.
-double make_point(int n) {
-    double d = dice_totals[n - 2];
-    return d / (d + 6.0);
 }
