@@ -31,7 +31,8 @@ int main() {
 }
 
 // Print the number n passed to the function if greater than or equal to
-// min_n, then flag all the elements in the boolean array (p) as false.
+// min_n, then flag all the elements in the boolean array (p) that correspond
+// to a multiple of n as false.
 void process_prime(bool* p, int min_n, int max_n, int n) {
     if (n > min_n) {
         std::cout << n << "\t";
