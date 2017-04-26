@@ -17,6 +17,13 @@ int main() {
         }
     }
     std::cout << std::endl;
+    int primes_found = 0;
+    for (int i = 2; i <= max_n; ++i) {
+        if (p[i]) {
+            ++primes_found;
+        }
+    }
+    std::cout << "Primes found: " << primes_found << std::endl;
     delete[] p;
     return 0;
 }
