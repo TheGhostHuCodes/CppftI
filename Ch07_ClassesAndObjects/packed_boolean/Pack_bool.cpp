@@ -7,6 +7,8 @@ Pack_bool::Pack_bool(int bit_length) {
     data = new unsigned char[bytes_to_allocate];
 }
 
+Pack_bool::~Pack_bool() { delete[] data; }
+
 // Find the target bit and use bitwise OR to turn it on.
 void Pack_bool::set_bit(int n) {
     int i = n / 8;

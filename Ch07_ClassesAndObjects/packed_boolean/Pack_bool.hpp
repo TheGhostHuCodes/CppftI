@@ -10,6 +10,7 @@ class Pack_bool {
 
   public:
     Pack_bool(int bit_length);
+    ~Pack_bool();
     void set_bit(int n);
     void clear_bit(int n);
     bool get_bit(int n);
