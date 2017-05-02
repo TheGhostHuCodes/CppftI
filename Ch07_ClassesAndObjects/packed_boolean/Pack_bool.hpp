@@ -7,6 +7,7 @@ class Pack_bool {
     int bit_length;
     int bytes_to_allocate;
     unsigned char* data;
+    void check_range(int n);
 
   public:
     Pack_bool(int bit_length);
