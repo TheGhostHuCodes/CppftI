@@ -17,4 +17,5 @@ class Pack_bool {
     bool get_bit(int n);
     void set_all_true();
     void set_all_false();
+    void resize(int bit_length);
 };

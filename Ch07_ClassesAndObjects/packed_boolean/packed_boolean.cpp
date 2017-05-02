@@ -14,5 +14,12 @@ int main() {
         std::cout << pb.get_bit(i) << " ";
     }
     std::cout << std::endl;
+
+    int NEW_NUMBER_OF_BITS = 7;
+    pb.resize(NEW_NUMBER_OF_BITS);
+    for (int i = 0; i < NEW_NUMBER_OF_BITS; ++i) {
+        std::cout << pb.get_bit(i) << " ";
+    }
+    std::cout << std::endl;
     return 0;
 }

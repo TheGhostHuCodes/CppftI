@@ -1,4 +1,5 @@
 #include "Pack_bool.hpp"
+#include <algorithm>
 #include <sstream>
 #include <stdexcept>
 
@@ -46,6 +47,34 @@ void Pack_bool::set_all_false() {
     for (int i = 0; i < bytes_to_allocate; ++i) {
         data[i] = 0x00;
     }
+}
+
+void Pack_bool::resize(int new_bit_length) {
+    if (bit_length == new_bit_length) {
+        return;
+    }
+
+    int bytes_to_reallocate = (new_bit_length + 7) / 8;
+    auto new_data = new unsigned char[bytes_to_reallocate];
+
+    // Zero everything out first.
+    for (int i = 0; i < bytes_to_reallocate; ++i) {
+        new_data[i] = 0x00;
+    }
+
+    // Copy over data to new packed bool data array.
+    int end = std::min(bit_length, new_bit_length);
+    for (int n = 0; n < end; ++n) {
+        if (get_bit(n)) {
+            int i = n / 8;
+            int j = n % 8;
+            new_data[i] |= (0x01 << j);
+        }
+    }
+
+    delete[] data;
+    data = new_data;
+    bit_length = new_bit_length;
 }
 
 void Pack_bool::check_range(int n) {
