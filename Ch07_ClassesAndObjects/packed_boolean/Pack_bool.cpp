@@ -13,7 +13,7 @@ Pack_bool::~Pack_bool() { delete[] data; }
 void Pack_bool::set_bit(int n) {
     int i = n / 8;
     int j = n % 8;
-    data[i] = data[i] | (0x01 << j);
+    data[i] |= (0x01 << j);
 }
 
 // Find the target bit and use bitwise negation and bitwise AND to set it to
@@ -21,7 +21,7 @@ void Pack_bool::set_bit(int n) {
 void Pack_bool::clear_bit(int n) {
     int i = n / 8;
     int j = n % 8;
-    data[i] = data[i] & ~(0x01 << j);
+    data[i] &= ~(0x01 << j);
 }
 
 // Find the target bit and use bitwise AND to get its value.
