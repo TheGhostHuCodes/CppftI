@@ -30,7 +30,7 @@ void Pack_bool::clear_bit(int n) {
 }
 
 // Find the target bit and use bitwise AND to get its value.
-bool Pack_bool::get_bit(int n) {
+bool Pack_bool::get_bit(int n) const {
     check_range(n);
     int i = n / 8;
     int j = n % 8;
@@ -77,7 +77,7 @@ void Pack_bool::resize(int new_bit_length) {
     bit_length = new_bit_length;
 }
 
-void Pack_bool::check_range(int n) {
+void Pack_bool::check_range(const int n) const {
     if (n < 0 || n >= bit_length) {
         std::stringstream message;
         message << "Requested index " << n << " is out of range [0," << n - 1
