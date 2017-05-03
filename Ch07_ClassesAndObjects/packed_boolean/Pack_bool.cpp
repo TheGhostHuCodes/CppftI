@@ -12,6 +12,14 @@ Pack_bool::Pack_bool(int bit_length_) : bit_length(bit_length_) {
 
 Pack_bool::~Pack_bool() { delete[] data; }
 
+Pack_bool::bit_ref Pack_bool::operator[](const int bit_index) {
+    check_range(bit_index);
+    int byte_index = bit_index / 8;
+    int subbit_index = bit_index % 8;
+    return bit_ref(&data[byte_index],
+                   static_cast<unsigned char>(0x01 << subbit_index));
+}
+
 // Find the target bit and use bitwise OR to turn it on.
 void Pack_bool::set_bit(int n) {
     check_range(n);
@@ -85,3 +93,19 @@ void Pack_bool::check_range(const int n) const {
         throw std::out_of_range(message.str());
     }
 }
+
+Pack_bool::bit_ref::bit_ref(unsigned char* data_, unsigned char mask_)
+    : data(data_), mask(mask_) {}
+
+// Used to assign value to bit_index location
+Pack_bool::bit_ref& Pack_bool::bit_ref::operator=(int n) {
+    if (n) {
+        *data |= mask;
+    } else {
+        *data &= ~mask;
+    }
+    return *this;
+}
+
+// Used to return value at bit_index location
+Pack_bool::bit_ref::operator bool() { return (*data & mask); }
