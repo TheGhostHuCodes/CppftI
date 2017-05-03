@@ -1,6 +1,6 @@
-#include <iostream>
-
 #include "Pack_bool.hpp"
+
+#include <iostream>
 
 int main() {
     int NUMBER_OF_BITS = 64;
