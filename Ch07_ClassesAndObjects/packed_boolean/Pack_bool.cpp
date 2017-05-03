@@ -3,10 +3,9 @@
 #include <sstream>
 #include <stdexcept>
 
-Pack_bool::Pack_bool(int bit_length) {
-    this->bit_length = bit_length;
+Pack_bool::Pack_bool(int bit_length_) : bit_length(bit_length_) {
     // Divide max by 8 and round up to get number of bytes to allocate.
-    bytes_to_allocate = (this->bit_length + 7) / 8;
+    bytes_to_allocate = (bit_length + 7) / 8;
     data = new unsigned char[bytes_to_allocate];
 }
 
