@@ -12,6 +12,12 @@ template <typename T1, typename T2> std::string return_type(T1 a, T2 b) {
     if (typeid(a + b) == typeid(unsigned long)) {
         return "unsigned long";
     }
+    if (typeid(a + b) == typeid(long long)) {
+        return "long long";
+    }
+    if (typeid(a + b) == typeid(unsigned long long)) {
+        return "unsigned long long";
+    }
     if (typeid(a + b) == typeid(float)) {
         return "float";
     }
@@ -29,6 +35,8 @@ int main() {
     int si = 0;
     unsigned ui = 0;
     unsigned long ul = 0;
+    long long ll = 0;
+    unsigned long long ull = 0;
     double x = 0.0;
     float flt = 0.0F;
 
@@ -38,5 +46,6 @@ int main() {
     std::cout << "si + x => " << return_type(si, x) << std::endl;
     std::cout << "x + flt => " << return_type(x, flt) << std::endl;
     std::cout << "ui + ul=> " << return_type(ui, ul) << std::endl;
+    std::cout << "ll + ull=> " << return_type(ll, ull) << std::endl;
     return 0;
 }
