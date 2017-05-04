@@ -15,7 +15,8 @@ set(SOURCE_FILES
         Ch05_Functions/odds_at_dice/odds_at_dice.cpp
         Ch05_Functions/print_ints/print_ints.cpp
         Ch06_PointersArraysAndReferences/sieve/sieve.cpp
-        Ch07_ClassesAndObjects/packed_boolean/packed_boolean.cpp)
+        Ch07_ClassesAndObjects/packed_boolean/packed_boolean.cpp
+        Ch09_CreatingAndUsingTemplates/type_promotion_2/type_promotion_2.cpp)
 
 add_library(Pack_bool STATIC
         Ch07_ClassesAndObjects/packed_boolean/Pack_bool.cpp Ch07_ClassesAndObjects/packed_boolean/Pack_bool.hpp)
@@ -36,3 +37,4 @@ add_executable(packed_boolean Ch07_ClassesAndObjects/packed_boolean/packed_boole
 target_link_libraries(packed_boolean PRIVATE Pack_bool)
 add_executable(bit_sieve Ch07_ClassesAndObjects/packed_boolean/bit_sieve.cpp)
 target_link_libraries(bit_sieve PRIVATE Pack_bool)
+add_executable(type_promotion_2 Ch09_CreatingAndUsingTemplates/type_promotion_2/type_promotion_2.cpp)
