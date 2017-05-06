@@ -6,30 +6,44 @@
 
 std::string input_str;
 
+int prompt_month() {
+    const static std::unordered_map<std::string, int> month_dict{
+        {"january", 1},   {"jan", 1},       {"1", 1},        {"february", 2},
+        {"feb", 2},       {"2", 2},         {"march", 3},    {"mar", 3},
+        {"3", 3},         {"april", 4},     {"apr", 4},      {"4", 4},
+        {"may", 5},       {"5", 5},         {"june", 6},     {"jun", 6},
+        {"6", 6},         {"july", 7},      {"jul", 7},      {"7", 7},
+        {"august", 8},    {"aug", 8},       {"8", 8},        {"september", 9},
+        {"sep", 9},       {"9", 9},         {"october", 10}, {"oct", 10},
+        {"10", 10},       {"november", 11}, {"nov", 11},     {"11", 11},
+        {"december", 12}, {"dec", 12},      {"12", 12}};
+
+    std::string a_month = "";
+    std::cout << "Enter a month from 1 - 12, \"Jan\" to \"Dec\", or "
+              << std::endl
+              << "\"January\" to \"December\": ";
+    std::cin >> a_month;
+    std::transform(a_month.begin(), a_month.end(), a_month.begin(), ::tolower);
+    auto got = month_dict.find(a_month);
+    if (got != month_dict.end()) {
+        return got->second;
+    } else {
+        std::cout << "\"" << a_month << "\" is not a valid month. Try again."
+                  << std::endl;
+        return -1;
+    }
+}
+
 int main() {
     int a_year = 0;
-    std::string a_month = "";
     int month_number = 0;
     int a_day = 1;
-
-    std::unordered_map<std::string, int> month_dict{
-        {"january", 1},   {"february", 2}, {"march", 3},     {"april", 4},
-        {"may", 5},       {"june", 6},     {"july", 7},      {"august", 8},
-        {"september", 9}, {"october", 10}, {"november", 11}, {"december", 12}};
 
     do {
         std::cout << "Enter a year from 1900 onward: ";
         std::cin >> a_year;
-        std::cout << "Enter a month from \"January\" to \"December\": ";
-        std::cin >> a_month;
-        std::transform(a_month.begin(), a_month.end(), a_month.begin(),
-                       ::tolower);
-        auto got = month_dict.find(a_month);
-        if (got != month_dict.end()) {
-            month_number = got->second;
-        } else {
-            std::cout << "\"" << a_month
-                      << "\" is not a valid month. Try again." << std::endl;
+        month_number = prompt_month();
+        if (month_number == -1) {
             continue;
         }
         std::cout << "Enter a day of the month, from 1 to 31: ";
